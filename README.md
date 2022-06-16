@@ -1,8 +1,8 @@
-# NeurIPS 2021: MineRL BASALT Competition Starter Kit
+# NeurIPS 2022: MineRL BASALT Competition Starter Kit
 
 [![Discord](https://img.shields.io/discord/565639094860775436.svg)](https://discord.gg/BT9uegr)
 
-This repository is the main MineRL BASALT 2021 Competition **submission template and starter kit**!
+This repository is the main MineRL BASALT 2022 Competition **submission template and starter kit**!
 
 MineRL BASALT is a competition on solving human-judged tasks. The tasks in this competition do not have a pre-defined reward function: the goal is to produce trajectories that are judged by real humans to be effective at solving a given task.
 
@@ -14,7 +14,7 @@ See [the homepage](https://minerl.io/basalt/) of the competition for further det
 *  **Starter code** for you to base your submission (an agent that takes random actions)!
 
 **Other Resources**:
-- [AICrowd competition page](https://www.aicrowd.com/challenges/neurips-2021-minerl-basalt-competition) - Main registration page & leaderboard.
+- [AICrowd competition page](https://www.aicrowd.com/challenges/neurips-2022-minerl-basalt-competition) - Main registration page & leaderboard.
 - [MineRL Documentation](http://minerl.io/docs) - Documentation for the `minerl` package!
 
 # How to Submit a Model on AICrowd.
@@ -32,7 +32,7 @@ You specify the task you want to submit agent for with the `aicrowd.json` file, 
 1.  **Clone the github repository** or press the "Use this Template" button on GitHub!
 
     ```
-    git clone https://github.com/minerllabs/basalt_competition_submission_template.git
+    git clone https://github.com/minerllabs/basalt_2022_competition_submission_template.git
     ```
 
 2. **Install** competition specific dependencies! **Make sure you have the [JDK 8 installed first](http://minerl.io/docs/tutorials/getting_started.html)!**
@@ -80,13 +80,19 @@ The different files and directories have following meaning:
 ├── aicrowd_helper.py        # Helper functions needed for evaluation
 ├── apt.txt                  # Packages to be installed inside docker image
 ├── data                     # The downloaded data, the path to directory is also available as `MINERL_DATA_ROOT` env variable
+├── environment.yml          # Conda environment description
+├── LICENCE                  # Licence
+├── run.py                   # The file that runs training and evaluation
+├── shared
+├── test_framework.py        # The entry point for the testing phase, which sets up the environment. Your code DOES NOT go here.
 ├── test_submission_code.py  # IMPORTANT: Your testing/inference phase code. NOTE: This is NOT the the entry point for testing phase!
 ├── train                    # Your trained model MUST be saved inside this directory
 ├── train_submission_code.py # IMPORTANT: Your training code. Running this should produce the same agent as you upload as part of the agent.
-├── test_framework.py        # The entry point for the testing phase, which sets up the environment. Your code DOES NOT go here.
 └── utility                  # The utility scripts which provide a smoother experience to you.
     ├── debug_build.sh
+    ├── docker_evaluation_locally.sh
     ├── docker_run.sh
+    ├── docker_train_locally.sh
     ├── environ.sh
     ├── evaluation_locally.sh
     ├── parser.py
@@ -100,7 +106,7 @@ The `aicrowd.json` of each submission should contain the following content:
 
 ```json
 {
-  "challenge_id": "neurips-2021-minerl-basalt-competition",
+  "challenge_id": "neurips-2022-minerl-basalt-competition",
   "authors": ["your-aicrowd-username"],
   "description": "sample description about your awesome agent",
   "tags": "FindCave",
@@ -133,7 +139,7 @@ Then you can add the correct git remote, and finally submit by doing :
 ```
 cd competition_submission_starter_template
 # Add AIcrowd git remote endpoint
-git remote add aicrowd git@gitlab.aicrowd.com:<YOUR_AICROWD_USER_NAME>/basalt_competition_submission_template.git
+git remote add aicrowd git@gitlab.aicrowd.com:<YOUR_AICROWD_USER_NAME>/basalt_2022_competition_submission_template.git
 git push aicrowd master
 
 # Create a tag for your submission and push
@@ -145,7 +151,7 @@ git push aicrowd submission-v0.1
 # then pushing a new tag will **not** trigger a new evaluation.
 ```
 
-You now should be able to see the details of your submission at: `https://gitlab.aicrowd.com/<YOUR_AICROWD_USER_NAME>/basalt_competition_submission_template/issues/`
+You now should be able to see the details of your submission at: `https://gitlab.aicrowd.com/<YOUR_AICROWD_USER_NAME>/basalt_2022_competition_submission_template/issues/`
 
 **Best of Luck** :tada: :tada:
 
@@ -168,16 +174,20 @@ The quick-start kit was authored by
 
 The BASALT competition is organized by the following team:
 
-* [Rohin Shah](https://rohinshah.com) (UC Berkeley)
-* Cody Wild (UC Berkeley)
-* Steven H. Wang (UC Berkeley)
-* Neel Alex (UC Berkeley)
-* Brandon Houghton (OpenAI and Carnegie Mellon University)
-* [William H. Guss]((http://wguss.ml)) (OpenAI and Carnegie Mellon University)
-* Sharada Mohanty (AIcrowd)
-* Anssi Kanervisto (University of Eastern Finland)
+* Anssi Kanervisto (Microsoft Research)
 * [Stephanie Milani](https://stephmilani.github.io/) (Carnegie Mellon University)
-* Nicholay Topin (Carnegie Mellon University)
-* Pieter Abbeel (UC Berkeley)
-* Stuart Russell (UC Berkeley)
-* Anca Dragan (UC Berkeley)
+* [Karolis Ramanauskas](https://ka.rol.is/) (Independent)
+* Byron V. Galbraith (Seva Inc.)
+* Steven H. Wang (ETH Zürich)
+* Sander Schulhoff (University of Maryland)
+* Brandon Houghton (OpenAI)
+* Sharada Mohanty (AIcrowd)
+* [Rohin Shah](https://rohinshah.com) (DeepMind)
+
+Advisors:
+
+* Andrew Critch (Encultured.ai)
+* Fei Fang (Carnegie Mellon University)
+* Kianté Brantley (Cornell University)
+* Sam Devlin (Microsoft Research)
+* Oriol Vinyals (DeepMind)
