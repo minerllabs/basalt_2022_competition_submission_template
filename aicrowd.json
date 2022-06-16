@@ -1,7 +1,8 @@
 {
-  "challenge_id": "neurips-2021-minerl-basalt-competition",
+  "challenge_id": "neurips-2022-minerl-basalt-competition",
   "authors": ["aicrowd-bot"],
   "description": "Test Model for MineRL BASALT Challenge",
   "tags": "FindCave",
+  "licence": "MIT",
   "gpu": false
 }
