@@ -1,4 +1,4 @@
-import train_submission_code
+import train
 import test_framework
 
 import os
@@ -9,7 +9,7 @@ EXITED_SIGNAL_PATH = os.getenv('EXITED_SIGNAL_PATH', 'shared/exited')
 # Training Phase
 if EVALUATION_STAGE in ['all', 'training']:
     try:
-        train_submission_code.main()
+        train.main()
     except Exception as e:
         print(e)
 
