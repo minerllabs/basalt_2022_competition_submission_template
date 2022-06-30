@@ -2,7 +2,6 @@ import logging
 import os
 
 import numpy as np
-import aicrowd_helper
 import gym
 import minerl
 
@@ -46,8 +45,6 @@ def main():
     # For a demonstration, we save some dummy data.
     np.save("./train/parameters.npy", np.random.random((10,)))
 
-    # Training 100% Completed
-    aicrowd_helper.register_progress(1)
     env.close()
 
 

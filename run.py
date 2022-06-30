@@ -1,4 +1,3 @@
-import aicrowd_helper
 import train_submission_code
 import test_framework
 
@@ -9,12 +8,9 @@ EXITED_SIGNAL_PATH = os.getenv('EXITED_SIGNAL_PATH', 'shared/exited')
 
 # Training Phase
 if EVALUATION_STAGE in ['all', 'training']:
-    aicrowd_helper.training_start()
     try:
         train_submission_code.main()
-        aicrowd_helper.training_end()
     except Exception as e:
-        aicrowd_helper.training_error()
         print(e)
 
 
@@ -25,12 +21,9 @@ if EVALUATION_STAGE in ['all', 'testing']:
             os.remove(EXITED_SIGNAL_PATH)
         except FileNotFoundError:
             pass
-    aicrowd_helper.inference_start()
     try:
         test_framework.main()
-        aicrowd_helper.inference_end()
     except Exception as e:
-        aicrowd_helper.inference_error()
         print(e)
     if EVALUATION_RUNNING_ON in ['local']:
         from pathlib import Path

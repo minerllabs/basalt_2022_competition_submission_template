@@ -3,7 +3,6 @@ import logging
 import os
 import atexit
 
-import aicrowd_helper
 import gym
 import minerl
 from minerl.herobraine.wrappers import downscale_wrapper
