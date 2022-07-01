@@ -19,13 +19,11 @@ See [the homepage](https://minerl.io/basalt/) of the competition for further det
 
 # How to Submit a Model on AICrowd.
 
-In brief: you define your Python environment using Anaconda environment files, and AICrowd system will build a Docker image and run your code using the docker scripts inside the `utility` directory.
+In brief: you define your Python environment using Anaconda environment files, and AICrowd system will use the `run.py` file to train and evaluate your agents.
 
-You submit pretrained models, the evaluation code and the training code. Training code should produce the same models you upload as part of your submission.
+You submit pretrained models, the evaluation code and the training code. Training code should produce the same models you upload as part of your submission. The training procedure will only be run during Round 2, however we still require the training code to be there in Round 1 submissions.
 
-Your evaluation code (`test_submission_code.py`) only needs to control the agent and accomplish the environment's task. The evaluation server will handle recording of videos.
-
-You specify the task you want to submit agent for with the `aicrowd.json` file, `tags` field (see below). **One submission only covers one task**!
+Your evaluation code (`test_<env_name>.py`) only needs to control the agent and accomplish the environment's task. The evaluation server will handle recording of videos.
 
 ## Setup
 
@@ -65,8 +63,6 @@ You specify the task you want to submit agent for with the `aicrowd.json` file, 
 
     * **Apt Packages** If your training procedure or agent depends on specific Debian (Ubuntu, etc.) packages, add them to `apt.txt`.
 
-These files are used to construct both the **local and AICrowd docker containers** in which your agent will train. 
-
 If above are too restrictive for defining your environment, see [this Discourse topic for more information](https://discourse.aicrowd.com/t/how-to-specify-runtime-environment-for-your-submission/2274).
 
 ## What should my code structure be like ?
@@ -76,28 +72,21 @@ The different files and directories have following meaning:
 
 ```
 .
-├── aicrowd.json             # Submission meta information like your username
-├── aicrowd_helper.py        # Helper functions needed for evaluation
-├── apt.txt                  # Packages to be installed inside docker image
-├── data                     # The downloaded data, the path to directory is also available as `MINERL_DATA_ROOT` env variable
-├── environment.yml          # Conda environment description
-├── LICENCE                  # Licence
-├── run.py                   # The file that runs training and evaluation
-├── shared
-├── test_framework.py        # The entry point for the testing phase, which sets up the environment. Your code DOES NOT go here.
-├── test_submission_code.py  # IMPORTANT: Your testing/inference phase code. NOTE: This is NOT the the entry point for testing phase!
-├── train                    # Your trained model MUST be saved inside this directory
-├── train_submission_code.py # IMPORTANT: Your training code. Running this should produce the same agent as you upload as part of the agent.
-└── utility                  # The utility scripts which provide a smoother experience to you.
-    ├── debug_build.sh
-    ├── docker_evaluation_locally.sh
-    ├── docker_run.sh
-    ├── docker_train_locally.sh
-    ├── environ.sh
-    ├── evaluation_locally.sh
-    ├── parser.py
-    ├── train_locally.sh
-    └── verify_or_download_data.sh
+├── aicrowd.json                     # Submission meta information like your username
+├── apt.txt                          # Packages to be installed inside docker image
+├── config.py                        # Config for debugging submissions
+├── data                             # The downloaded data, the path to directory is also available as `MINERL_DATA_ROOT` env variable
+├── environment.yml                  # Conda environment description
+├── LICENCE                          # Licence
+├── run.py                           # The file that runs training and evaluation
+├── test_BuildVillageHouse.py        # IMPORTANT: Your testing/inference phase code.
+├── test_CreateVillageAnimalPen.py   # IMPORTANT: Your testing/inference phase code.
+├── test_FindCave.py                 # IMPORTANT: Your testing/inference phase code.
+├── test_MakeWaterfall.py            # IMPORTANT: Your testing/inference phase code.
+├── train                            # IMPORTANT: Your trained model MUST be saved inside this directory
+├── train_submission_code.py         # IMPORTANT: Your training code. Running this should produce the same agent as you upload as part of the agent.
+└── utility                          # Utility scripts
+    └── verify_or_download_data.py
 ```
 
 Finally, **you must specify an AIcrowd submission JSON in `aicrowd.json` to be scored!** 
@@ -109,21 +98,21 @@ The `aicrowd.json` of each submission should contain the following content:
   "challenge_id": "neurips-2022-minerl-basalt-competition",
   "authors": ["your-aicrowd-username"],
   "description": "sample description about your awesome agent",
-  "tags": "FindCave",
   "license": "MIT",
-  "gpu": true
+  "gpu": true,
+  "debug": false
 }
 ```
 
 This JSON is used to map your submission to the said challenge, so please remember to use the correct `challenge_id` as specified above.
 
-You **need to** specify the task of the submission with the `tags` field with one of the following: `{"FindCave", "MakeWaterfall", "CreateVillageAnimalPen", "BuildVillageHouse"}`. You need to create one submission per task to cover all tasks.
+By default, the `debug` flag is set to `true`. This makes evaluations run a single short episode. Please submit this way first to see if everything works fine on the AICrowd side. If it does, go ahead and submit with `debug` set to `false`.
 
 Please specify if your code will use a GPU or not for the evaluation of your model. If you specify `true` for the GPU, a **NVIDIA Tesla K80 GPU** will be provided and used for the evaluation.
 
 ### Dataset location
 
-You **don't** need to upload the MineRL dataset in submission and it will be provided in online submissions at `MINERL_DATA_ROOT` path, should you need it. For local training and evaluations, you can download it once in your system via `python ./utility/verify_or_download_data.py` or place manually into the `./data/` folder.
+You **don't** need to upload the MineRL dataset in submission, and it will be provided in online submissions at `MINERL_DATA_ROOT` path, should you need it. For local training and evaluations, you can download it once in your system via `python ./utility/verify_or_download_data.py` or place manually into the `./data/` folder.
 
 ## How to submit!
 
@@ -157,29 +146,23 @@ You now should be able to see the details of your submission at: `https://gitlab
 
 # Ensuring that your code works.
 
-You can perform local training and evaluation using utility scripts shared in this directory. To mimic the online training phase you can run `./utility/train_locally.sh` from the repository root, you can specify `--verbose` for complete logs.
+You can perform local training and evaluation by simply running `python run.py`, which then runs `train.py` and all four `test_<env_name>.py` scripts.
 
-For local evaluation of your code, you can use `./utility/evaluation_locally.sh`, add `--verbose` if you want to view complete logs. **Note** that you do not need to record videos in your code! AICrowd server will handle this. Your code only needs to play the games.
-
-For running/testing your submission in a docker environment (identical to the online submission), you can use `./utility/docker_train_locally.sh` and `./utility/docker_evaluation_locally.sh`. You can also run docker image with bash entrypoint for debugging on the go with the help of `./utility/docker_run.sh`. These scripts respect following parameters:
-
-* `--no-build`: To skip docker image build and use the last build image
-* `--nvidia`: To use `nvidia-docker` instead of `docker` which include your nvidia related drivers inside docker image
-
+**Note** that you do not need to record videos in your code! AICrowd server will handle this. Your code only needs to play the games.
 
 # Team
 
 The quick-start kit was authored by 
-[Anssi Kanervisto](https://github.com/Miffyli) and [Shivam Khandelwal](https://twitter.com/skbly7) with help from [William H. Guss](http://wguss.ml)
+[Anssi Kanervisto](https://www.microsoft.com/en-us/research/people/t-anssik/), [Karolis Ramanauskas](https://ka.rol.is/) and [Shivam Khandelwal](https://twitter.com/skbly7) with help from [William H. Guss](http://wguss.ml)
 
 The BASALT competition is organized by the following team:
 
-* Anssi Kanervisto (Microsoft Research)
+* [Anssi Kanervisto](https://www.microsoft.com/en-us/research/people/t-anssik/) (Microsoft Research)
 * [Stephanie Milani](https://stephmilani.github.io/) (Carnegie Mellon University)
 * [Karolis Ramanauskas](https://ka.rol.is/) (Independent)
 * Byron V. Galbraith (Seva Inc.)
 * Steven H. Wang (ETH Zürich)
-* Sander Schulhoff (University of Maryland)
+* [Sander Schulhoff](https://trigaten.github.io/) (University of Maryland)
 * Brandon Houghton (OpenAI)
 * Sharada Mohanty (AIcrowd)
 * [Rohin Shah](https://rohinshah.com) (DeepMind)
