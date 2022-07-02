@@ -8,8 +8,9 @@ dependencies:
   - py-opencv
   - cudatoolkit=10.0
   - pip:
-    - crowdai_api
     - minerl
     - coloredlogs
     - matplotlib
-    - pyro4
+    - aicrowd-api
+    - aicrowd-gym
+

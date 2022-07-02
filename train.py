@@ -8,7 +8,7 @@ import minerl
 import coloredlogs
 coloredlogs.install(logging.DEBUG)
 
-# The dataset is available in data/ directory from repository root.
+# The dataset and trained models are available in data/ directory from repository root.
 MINERL_DATA_ROOT = os.getenv('MINERL_DATA_ROOT', 'data/')
 
 
@@ -16,12 +16,8 @@ def main():
     """
     This function will be called for training phase.
     This should produce and save same files you upload during your submission.
+    All trained models should be placed under "train" directory!
     """
-    # TODO: data is WIP
-    # How to sample minerl data is document here:
-    # http://minerl.io/docs/tutorials/data_sampling.html
-    # data = minerl.data.make('MineRLBasaltFindCave-v0', data_dir=MINERL_DATA_ROOT)
-
     # Sample code for illustration, add your training code below
     env = gym.make('MineRLBasaltFindCave-v0')
 
@@ -30,12 +26,12 @@ def main():
     for _ in range(100):
         obs, reward, done, info = env.step(env.action_space.sample())
         # Do your training here
-
         if done:
             break
 
     # Save trained model to train/ directory
     # For a demonstration, we save some dummy data.
+    # NOTE: All trained models should be placed under train directory!
     np.save("./train/parameters.npy", np.random.random((10,)))
 
     env.close()

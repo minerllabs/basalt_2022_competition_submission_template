@@ -2,7 +2,9 @@
 
 [![Discord](https://img.shields.io/discord/565639094860775436.svg)](https://discord.gg/BT9uegr)
 
-This repository is the main MineRL BASALT 2022 Competition **submission template and starter kit**!
+This repository is the main MineRL BASALT 2022 Competition **submission template** (only for the "basalt" track")!
+
+There will be a separate submission template for the "intro" track of the competition.
 
 MineRL BASALT is a competition on solving human-judged tasks. The tasks in this competition do not have a pre-defined reward function: the goal is to produce trajectories that are judged by real humans to be effective at solving a given task.
 
@@ -10,7 +12,6 @@ See [the homepage](https://minerl.io/basalt/) of the competition for further det
 
 **This repository contains**:
 *  **Documentation** on how to submit your agent to the leaderboard
-*  **The procedure** for Round 1 and Round 2
 *  **Starter code** for you to base your submission (an agent that takes random actions)!
 
 **Other Resources**:
@@ -21,9 +22,9 @@ See [the homepage](https://minerl.io/basalt/) of the competition for further det
 
 In brief: you define your Python environment using Anaconda environment files, and AICrowd system will use the `run.py` file to train and evaluate your agents.
 
-You submit pretrained models, the evaluation code and the training code. Training code should produce the same models you upload as part of your submission. The training procedure will only be run during Round 2, however we still require the training code to be there in Round 1 submissions.
+You submit pretrained models, the evaluation code and the training code. Training code should produce the same models you upload as part of your submission. You **must** upload the training code; which will be used to retrain and validate finalist submissions.
 
-Your evaluation code (`test_<env_name>.py`) only needs to control the agent and accomplish the environment's task. The evaluation server will handle recording of videos.
+Your evaluation code (`test_<env_name>.py`) only needs to control the agent and accomplish the environment's task. The evaluation server will handle recording of videos. Do not change the number of episodes played or maximum number of steps executed: the submissions will fail otherwise.
 
 ## Setup
 
@@ -33,13 +34,7 @@ Your evaluation code (`test_<env_name>.py`) only needs to control the agent and 
     git clone https://github.com/minerllabs/basalt_2022_competition_submission_template.git
     ```
 
-2. **Install** competition specific dependencies! **Make sure you have the [JDK 8 installed first](http://minerl.io/docs/tutorials/getting_started.html)!**
-    ```
-    # 1. Make sure to install the JDK first
-    # -> Go to http://minerl.io/docs/tutorials/getting_started.html
-
-    # 2. Install the `minerl` package and its dependencies.
-    ```
+2. **Install** MineRL specific dependencies! Mainly, make sure you have Java JDK 8! See more details [here](https://minerl.readthedocs.io/en/v1.0.0/tutorials/index.html)
 
 3. **Specify** your specific submission dependencies (PyTorch, Tensorflow, kittens, puppies, etc.)
 
@@ -47,7 +42,7 @@ Your evaluation code (`test_<env_name>.py`) only needs to control the agent and 
        * **Create your new conda environment**
 
             ```sh
-            cd basalt_competition_submission_template
+            cd basalt_2022_competition_submission_template
             conda env create -f environment.yml 
             conda activate minerl
             ```
@@ -75,7 +70,7 @@ The different files and directories have following meaning:
 ├── aicrowd.json                     # Submission meta information like your username
 ├── apt.txt                          # Packages to be installed inside docker image
 ├── config.py                        # Config for debugging submissions
-├── data                             # The downloaded data, the path to directory is also available as `MINERL_DATA_ROOT` env variable
+├── data                             # The downloaded data and pretrained OpenAI models, the path to directory is also available as `MINERL_DATA_ROOT` env variable
 ├── environment.yml                  # Conda environment description
 ├── LICENCE                          # Licence
 ├── run.py                           # The file that runs training and evaluation
@@ -83,8 +78,8 @@ The different files and directories have following meaning:
 ├── test_CreateVillageAnimalPen.py   # IMPORTANT: Your testing/inference phase code.
 ├── test_FindCave.py                 # IMPORTANT: Your testing/inference phase code.
 ├── test_MakeWaterfall.py            # IMPORTANT: Your testing/inference phase code.
-├── train                            # IMPORTANT: Your trained model MUST be saved inside this directory
-├── train_submission_code.py         # IMPORTANT: Your training code. Running this should produce the same agent as you upload as part of the agent.
+├── train                            # IMPORTANT: Your trained models MUST be saved inside this directory
+├── train.py                         # IMPORTANT: Your training code. Running this should produce the same agent as you upload as part of the agent.
 └── utility                          # Utility scripts
     └── verify_or_download_data.py
 ```
@@ -100,7 +95,8 @@ The `aicrowd.json` of each submission should contain the following content:
   "description": "sample description about your awesome agent",
   "license": "MIT",
   "gpu": true,
-  "debug": false
+  "debug": false,
+  "track": "basalt"
 }
 ```
 
@@ -108,22 +104,22 @@ This JSON is used to map your submission to the said challenge, so please rememb
 
 By default, the `debug` flag is set to `true`. This makes evaluations run a single short episode. Please submit this way first to see if everything works fine on the AICrowd side. If it does, go ahead and submit with `debug` set to `false`.
 
-Please specify if your code will use a GPU or not for the evaluation of your model. If you specify `true` for the GPU, a **NVIDIA Tesla K80 GPU** will be provided and used for the evaluation.
+Please specify if your code will use a GPU or not for the evaluation of your model. 
 
-### Dataset location
+### Dataset and pretrained model location
 
-You **don't** need to upload the MineRL dataset in submission, and it will be provided in online submissions at `MINERL_DATA_ROOT` path, should you need it. For local training and evaluations, you can download it once in your system via `python ./utility/verify_or_download_data.py` or place manually into the `./data/` folder.
+You **don't** need to upload the provided BASALT dataset or pretrained models in the submission, and it will be provided in online submissions at `MINERL_DATA_ROOT` path, should you need it.
 
 ## How to submit!
 
 To make a submission, you will have to create a private repository on [https://gitlab.aicrowd.com/](https://gitlab.aicrowd.com/).
 
-You will have to add your SSH Keys to your GitLab account by following the instructions [here](https://docs.gitlab.com/ee/gitlab-basics/create-your-ssh-keys.html).
-If you do not have SSH Keys, you will first need to [generate one](https://docs.gitlab.com/ee/ssh/README.html#generating-a-new-ssh-key-pair).
+You will have to add your SSH Keys to your GitLab account by following the instructions [here](https://docs.gitlab.com/ee/user/ssh.html).
+If you do not have SSH Keys, you will first need to [generate one](https://docs.gitlab.com/ee/user/ssh.html#generate-an-ssh-key-pair).
 
 Then you can create a submission by making a _tag push_ to your repository on [https://gitlab.aicrowd.com/](https://gitlab.aicrowd.com/).
 **Any tag push (where the tag name begins with "submission-") to your private repository is considered as a submission**  
-Then you can add the correct git remote, and finally submit by doing :
+Then you can add the correct git remote, and finally submit by doing:
 
 ```
 cd competition_submission_starter_template
@@ -143,6 +139,10 @@ git push aicrowd submission-v0.1
 You now should be able to see the details of your submission at: `https://gitlab.aicrowd.com/<YOUR_AICROWD_USER_NAME>/basalt_2022_competition_submission_template/issues/`
 
 **Best of Luck** :tada: :tada:
+
+## Large model files
+
+To upload large model files (e.g., your finetuned versions of the OpenAI VPT models, which can reach gigabytes), use git LFS. See instructions [here](https://discourse.aicrowd.com/t/how-to-upload-large-files-size-to-your-submission/2304).
 
 # Ensuring that your code works.
 

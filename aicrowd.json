@@ -4,5 +4,6 @@
   "description": "Test Model for MineRL BASALT Challenge",
   "licence": "MIT",
   "gpu": false,
-  "debug": true
+  "debug": false,
+  "track": "basalt"
 }
