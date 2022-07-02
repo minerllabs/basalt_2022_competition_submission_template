@@ -79,9 +79,7 @@ The different files and directories have following meaning:
 ├── test_FindCave.py                 # IMPORTANT: Your testing/inference phase code.
 ├── test_MakeWaterfall.py            # IMPORTANT: Your testing/inference phase code.
 ├── train                            # IMPORTANT: Your trained models MUST be saved inside this directory
-├── train.py                         # IMPORTANT: Your training code. Running this should produce the same agent as you upload as part of the agent.
-└── utility                          # Utility scripts
-    └── verify_or_download_data.py
+└── train.py                         # IMPORTANT: Your training code. Running this should produce the same agent as you upload as part of the agent.
 ```
 
 Finally, **you must specify an AIcrowd submission JSON in `aicrowd.json` to be scored!** 
