@@ -41,6 +41,9 @@ def main():
                 break
         print(f"[{i}] Episode complete")
 
+    # Close environment and clean up any bigger memory hogs.
+    # Otherwise you might start running into memory issues
+    # on the evaluation server.
     env.close()
 
 

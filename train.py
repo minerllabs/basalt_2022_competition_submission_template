@@ -34,6 +34,8 @@ def main():
     # NOTE: All trained models should be placed under train directory!
     np.save("./train/parameters.npy", np.random.random((10,)))
 
+    # Close environment and clean up any bigger memory hogs.
+    # Otherwise you might start running into memory issues.
     env.close()
 
 
