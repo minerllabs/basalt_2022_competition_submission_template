@@ -8,7 +8,7 @@ dependencies:
   - py-opencv
   - cudatoolkit=10.0
   - pip:
-    - minerl
+    - git+https://github.com/minerllabs/minerl
     - coloredlogs
     - matplotlib
     - aicrowd-api
