@@ -70,7 +70,25 @@ The different files and directories have the following meaning:
 ├── aicrowd.json                     # Submission meta information like your username
 ├── apt.txt                          # Packages to be installed inside docker image
 ├── config.py                        # Config for debugging submissions
-├── data                             # The downloaded data and pretrained OpenAI models, the path to directory is also available as `MINERL_DATA_ROOT` env variable
+├── data                             # The downloaded data and pretrained OpenAI models will be available here during training
+│   ├── MineRLBasaltBuildVillageHouse-v0
+│   │   ├── Player139-40dd711bfe2e-20220626-202049.jsonl
+│   │   ├── Player139-40dd711bfe2e-20220626-202049.mp4
+│   │   ├── Player139-62ae2702e774-20220626-201655.jsonl
+│   │   ├── Player139-62ae2702e774-20220626-201655.mp4
+│   │   └── ... rest of the files
+│   ├── MineRLBasaltCreateVillageAnimalPen-v0
+│   │   └── ... files as above
+│   ├── MineRLBasaltFindCave-v0
+│   │   └── ... files as above
+│   ├── MineRLBasaltMakeWaterfall-v0
+│   │   └── ... files as above
+│   └── VPT-models
+│       ├── foundation-model-1x.model
+│       ├── foundation-model-1x.weights
+│       ├── foundation-model-3x.model
+│       ├── foundation-model-3x.weights
+│       └── ... rest of the models
 ├── environment.yml                  # Conda environment description
 ├── LICENCE                          # Licence
 ├── run.py                           # The file that runs training and evaluation
