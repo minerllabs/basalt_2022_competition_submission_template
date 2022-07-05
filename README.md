@@ -43,7 +43,7 @@ Your evaluation code (`test_<env_name>.py`) only needs to control the agent and 
 
             ```sh
             cd basalt_2022_competition_submission_template
-            conda env create -f environment.yml 
+            conda env create -f environment.yml
             conda activate minerl
             ```
 
@@ -82,7 +82,7 @@ The different files and directories have the following meaning:
 └── train.py                         # IMPORTANT: Your training code. Running this should produce the same agent as you upload as part of the agent.
 ```
 
-Finally, **you must specify an AIcrowd submission JSON in `aicrowd.json` to be scored!** 
+Finally, **you must specify an AIcrowd submission JSON in `aicrowd.json` to be scored!**
 
 The `aicrowd.json` of each submission should contain the following content:
 
@@ -102,11 +102,14 @@ This JSON is used to map your submission to the said challenge, so please rememb
 
 By default, the `debug` flag is set to `true`. This makes evaluations run a single short episode. Please submit this way first to see if everything works fine on the AICrowd side. If it does, go ahead and submit with `debug` set to `false`.
 
-Please specify if your code will use a GPU or not for the evaluation of your model. 
+Please specify if your code will use a GPU or not for the evaluation of your model.
 
 ### Dataset and pretrained model location
 
 You **don't** need to upload the provided BASALT dataset or pretrained models in the submission, and it will be provided in online submissions at `MINERL_DATA_ROOT` path, should you need it.
+
+**Please** only add files needed for the submission; too large submissions may fail randomly. Having large git history is fine.
+
 
 ## How to submit!
 
@@ -116,7 +119,7 @@ You will have to add your SSH Keys to your GitLab account by following the instr
 If you do not have SSH Keys, you will first need to [generate one](https://docs.gitlab.com/ee/user/ssh.html#generate-an-ssh-key-pair).
 
 Then you can create a submission by making a _tag push_ to your repository on [https://gitlab.aicrowd.com/](https://gitlab.aicrowd.com/).
-**Any tag push (where the tag name begins with "submission-") to your private repository is considered as a submission**  
+**Any tag push (where the tag name begins with "submission-") to your private repository is considered as a submission**
 Then you can add the correct git remote, and finally submit by doing:
 
 ```
@@ -150,7 +153,7 @@ You can perform local training and evaluation by simply running `python run.py`,
 
 # Team
 
-The quick-start kit was authored by 
+The quick-start kit was authored by
 [Anssi Kanervisto](https://www.microsoft.com/en-us/research/people/t-anssik/), [Karolis Ramanauskas](https://ka.rol.is/) and [Shivam Khandelwal](https://twitter.com/skbly7) with help from [William H. Guss](http://wguss.ml)
 
 The BASALT competition is organized by the following team:
