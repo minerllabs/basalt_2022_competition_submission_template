@@ -63,7 +63,7 @@ If above are too restrictive for defining your environment, see [this Discourse 
 ## What should my code structure be like ?
 
 Please follow the example structure shared in the starter kit for the code structure.
-The different files and directories have following meaning:
+The different files and directories have the following meaning:
 
 ```
 .
@@ -93,7 +93,7 @@ The `aicrowd.json` of each submission should contain the following content:
   "description": "sample description about your awesome agent",
   "license": "MIT",
   "gpu": true,
-  "debug": false,
+  "debug": true,
   "track": "basalt"
 }
 ```
@@ -120,7 +120,7 @@ Then you can create a submission by making a _tag push_ to your repository on [h
 Then you can add the correct git remote, and finally submit by doing:
 
 ```
-cd competition_submission_starter_template
+cd basalt_2022_competition_submission_template
 # Add AIcrowd git remote endpoint
 git remote add aicrowd git@gitlab.aicrowd.com:<YOUR_AICROWD_USER_NAME>/basalt_2022_competition_submission_template.git
 git push aicrowd master
@@ -130,7 +130,7 @@ git tag -am "submission-v0.1" submission-v0.1
 git push aicrowd master
 git push aicrowd submission-v0.1
 
-# Note : If the contents of your repository (latest commit hash) does not change,
+# Note : If the contents of your repository (latest commit hash) do not change,
 # then pushing a new tag will **not** trigger a new evaluation.
 ```
 
@@ -140,7 +140,7 @@ You now should be able to see the details of your submission at: `https://gitlab
 
 ## Large model files
 
-To upload large model files (e.g., your finetuned versions of the OpenAI VPT models, which can reach gigabytes), use git LFS. See instructions [here](https://discourse.aicrowd.com/t/how-to-upload-large-files-size-to-your-submission/2304).
+To upload large model files (e.g., your fine-tuned versions of the OpenAI VPT models, which can reach gigabytes), use git LFS. See instructions [here](https://discourse.aicrowd.com/t/how-to-upload-large-files-size-to-your-submission/2304).
 
 # Ensuring that your code works.
 
@@ -158,7 +158,7 @@ The BASALT competition is organized by the following team:
 * [Anssi Kanervisto](https://www.microsoft.com/en-us/research/people/t-anssik/) (Microsoft Research)
 * [Stephanie Milani](https://stephmilani.github.io/) (Carnegie Mellon University)
 * [Karolis Ramanauskas](https://ka.rol.is/) (Independent)
-* Byron V. Galbraith (Seva Inc.)
+* [Byron V. Galbraith](https://github.com/bgalbraith) (Seva Inc.)
 * Steven H. Wang (ETH Zürich)
 * [Sander Schulhoff](https://trigaten.github.io/) (University of Maryland)
 * Brandon Houghton (OpenAI)

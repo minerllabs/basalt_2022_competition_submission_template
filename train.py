@@ -35,7 +35,7 @@ def main():
     np.save("./train/parameters.npy", np.random.random((10,)))
 
     # Close environment and clean up any bigger memory hogs.
-    # Otherwise you might start running into memory issues.
+    # Otherwise, you might start running into memory issues.
     env.close()
 
 

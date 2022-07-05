@@ -13,7 +13,7 @@ MINERL_GYM_ENV = 'MineRLBasaltCreateVillageAnimalPen-v0'
 
 def main():
     # NOTE: It is important that you use "aicrowd_gym" instead of regular "gym"!
-    #       Otherwise your submission will fail.
+    #       Otherwise, your submission will fail.
     env = aicrowd_gym.make(MINERL_GYM_ENV)
 
     # Load your model here
@@ -42,7 +42,7 @@ def main():
         print(f"[{i}] Episode complete")
 
     # Close environment and clean up any bigger memory hogs.
-    # Otherwise you might start running into memory issues
+    # Otherwise, you might start running into memory issues
     # on the evaluation server.
     env.close()
 

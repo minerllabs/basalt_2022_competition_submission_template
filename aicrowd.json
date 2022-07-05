@@ -3,7 +3,7 @@
   "authors": ["aicrowd-bot"],
   "description": "Test Model for MineRL BASALT Challenge",
   "licence": "MIT",
-  "gpu": false,
-  "debug": false,
+  "gpu": true,
+  "debug": true,
   "track": "basalt"
 }
