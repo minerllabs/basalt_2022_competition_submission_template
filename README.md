@@ -8,7 +8,7 @@ There will be a separate submission template for the "intro" track of the compet
 
 MineRL BASALT is a competition on solving human-judged tasks. The tasks in this competition do not have a pre-defined reward function: the goal is to produce trajectories that are judged by real humans to be effective at solving a given task.
 
-See [the homepage](https://minerl.io/basalt/) of the competition for further details.
+See [the AICrowd competition page](https://www.aicrowd.com/challenges/neurips-2022-minerl-basalt-competition) for further information.
 
 **This repository contains**:
 *  **Documentation** on how to submit your agent to the leaderboard
