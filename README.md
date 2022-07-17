@@ -4,7 +4,7 @@
 
 This repository is the main MineRL BASALT 2022 Competition **submission template** (only for the "basalt" track")!
 
-There will be a separate submission template for the "intro" track of the competition.
+You can find the "intro" track submission kit [here](https://github.com/minerllabs/basalt_intro_track_2022_competition_submission_template).
 
 MineRL BASALT is a competition on solving human-judged tasks. The tasks in this competition do not have a pre-defined reward function: the goal is to produce trajectories that are judged by real humans to be effective at solving a given task.
 
