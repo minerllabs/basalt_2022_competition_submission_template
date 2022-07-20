@@ -144,11 +144,11 @@ Then you can add the correct git remote, and finally submit by doing:
 cd basalt_2022_competition_submission_template
 # Add AIcrowd git remote endpoint
 git remote add aicrowd git@gitlab.aicrowd.com:<YOUR_AICROWD_USER_NAME>/basalt_2022_competition_submission_template.git
-git push aicrowd master
+git push aicrowd main
 
 # Create a tag for your submission and push
 git tag -am "submission-v0.1" submission-v0.1
-git push aicrowd master
+git push aicrowd main
 git push aicrowd submission-v0.1
 
 # Note : If the contents of your repository (latest commit hash) do not change,
