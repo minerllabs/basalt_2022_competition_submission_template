@@ -70,7 +70,7 @@ The different files and directories have the following meaning:
 ├── aicrowd.json                     # Submission meta information like your username
 ├── apt.txt                          # Packages to be installed inside docker image
 ├── config.py                        # Config for debugging submissions
-├── data                             # The downloaded data and pretrained OpenAI models will be available here during training
+├── data                             # DO NOT UPLOAD THE DATASET. This data will be available on the training instance.
 │   ├── MineRLBasaltBuildVillageHouse-v0
 │   │   ├── Player139-40dd711bfe2e-20220626-202049.jsonl
 │   │   ├── Player139-40dd711bfe2e-20220626-202049.mp4
