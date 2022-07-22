@@ -122,9 +122,9 @@ By default, the `debug` flag is set to `true`. This makes evaluations run a sing
 
 Please specify if your code will use a GPU or not for the evaluation of your model.
 
-### Dataset and pretrained model location
+### Dataset and pretrained model location for training
 
-You **don't** need to upload the provided BASALT dataset or pretrained models in the submission, and it will be provided in online submissions at `MINERL_DATA_ROOT` path, should you need it.
+You **don't** need to upload the provided BASALT dataset or pretrained models for the training stage, and it will be provided in online submissions at `MINERL_DATA_ROOT` path (points to the `data` directory), should you need them for training. Note that `data` directory is not filled with data during initial evaluation phase.
 
 **Please** only add files needed for the submission; too large submissions may fail randomly. Having large git history is fine.
 
