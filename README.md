@@ -128,6 +128,7 @@ You **don't** need to upload the provided BASALT dataset or pretrained models fo
 
 **Please** only add files needed for the submission; too large submissions may fail randomly. Having large git history is fine.
 
+See instructions [here](https://github.com/minerllabs/basalt-2022-behavioural-cloning-baseline#downloading-basalt-dataset) on how to download the BASALT dataset.
 
 ## How to submit!
 
