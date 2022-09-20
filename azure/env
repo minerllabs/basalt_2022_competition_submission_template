@@ -1,0 +1,5 @@
+export RESOURCE_GROUP=__YOUR_RESOURCE_GROUP__
+export SUBSCRIPTION=__YOUR_AZURE_SUBSCRIPTION_ID__
+export CLUSTER_NAME=minerl-hack
+export PUBLIC_KEY_FILE=__PATH_TO__/id_rsa.pub
+export GPU_VM_SKU=standard_nc6 # the VM used by "NeurIPS 2022 completition" for evaluation
