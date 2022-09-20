@@ -1,6 +1,8 @@
-# Test on Azure AKS
+# Try MineRL on Azure AKS
 
 ## 1. Setup AKS cluster with GPU node
+
+Just saving your time reading through the doc https://learn.microsoft.com/en-us/azure/aks/gpu-cluster.
 
 Prerequisite:
 1. `az cli`
