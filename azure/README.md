@@ -6,6 +6,7 @@ Just saving your time reading through the doc https://learn.microsoft.com/en-us/
 
 Prerequisite:
 1. `az cli`
+1. `kubectl`
 1. Azure Subscription with GPU quota.
 
 Follow the steps below:
