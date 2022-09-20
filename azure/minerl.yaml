@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minerl-debug
+  labels:
+    app: minerl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minerl
+  template:
+    metadata:
+      labels:
+        app: minerl
+    spec:
+      containers:
+        - name: minerl
+          image: hao1939/intro-baseline # use the baseline image for the intro track
+          command: ["sleep"]
+          args: ["infinity"]
+          imagePullPolicy: Always
+          resources:
+            limits:
+              nvidia.com/gpu: "1"
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsUser: 0 # run as root, easier for debugging
+      # imagePullSecrets:
+      #   - name: docker-registry # uncomment if you are using private image registry
+      tolerations:
+        - key: "sku"
+          operator: "Equal"
+          value: "gpu"
+          effect: "NoSchedule"
