@@ -17,7 +17,7 @@ See [the AICrowd competition page](https://www.aicrowd.com/challenges/neurips-20
 **Other Resources**:
 - [AICrowd competition page](https://www.aicrowd.com/challenges/neurips-2022-minerl-basalt-competition) - Main registration page & leaderboard.
 - [MineRL Documentation](http://minerl.io/docs) - Documentation for the `minerl` package!
-
+- [Try MineRL on Azure AKS](./azure/README.md) - Documentation for trying the `Baseline VPT Model Baseline` on Azure AKS with GPU.
 # How to Submit a Model on AICrowd.
 
 In brief: you define your Python environment using Anaconda environment files, and AICrowd system will use the `run.py` file to train and evaluate your agents.
