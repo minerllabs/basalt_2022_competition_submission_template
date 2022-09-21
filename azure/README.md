@@ -35,5 +35,17 @@ Follow the steps below:
 
     `kubectl cp default/$(kubectl get pod -l app=minerl -o jsonpath="{.items[0].metadata.name}"):/home/aicrowd/output.mp4 output.mp4`
 
-
 Now you can watch the screen record on `output.mp4`.
+
+## 3. Or you may want to stream the screen
+
+1. You can stream the screen over rtmp then watch using VLC player.
+Stream the screen, see https://trac.ffmpeg.org/wiki/StreamingGuide:
+
+    `ffmpeg -f x11grab -video_size 640x360 -framerate 25 -i :44 -c:v libx264 -preset fast -pix_fmt yuv420p -crf 23 -s 640x360 -threads 0 -bufsize 8000k -f flv -listen 1 rtmp://0.0.0.0:8888/stream`
+
+1. Port-forward to localhost 8888:
+
+    `kubectl port-forward $(kubectl get pod -l app=minerl -o jsonpath="{.items[0].metadata.name}") 8888:8888`
+
+3. Now you can watch the screen record using VLC plyaer via `rtmp://127.0.0.1:8888/stream`
